@@ -1,12 +1,9 @@
 package org.example;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.Assert;
-import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import utils.Constants;
 
@@ -59,20 +56,22 @@ public class Main {
 //        driver.findElement(By.className("fa fa-2x fa-sign-in")); primeri dohvatanja elementa preko klase
 //        driver.findElement(By.cssSelector(".fa.fa-2x")); primeri dohvatanja elementa preko klase
 
-        String expectedText = "You logged into a secure area!!";
+        String expectedText = "Your username is invalid!";
 
-        WebElement loggedInUserText = driver.findElement(By.cssSelector(".flash.success"));
-        String actualText = loggedInUserText.getText();
+        WebElement loggedInUserElement = driver.findElement(By.cssSelector(".flash.error"));
 
-        String actual = loggedInUserText.getText().substring(0, loggedInUserText.getText().length()-1);
 
-        String [] actualRegexArray = loggedInUserText.getText().split("(?<=!)");
+        String actualText = loggedInUserElement.getText();
+
+       // String actual = loggedInUserElement.getText().substring(0, loggedInUserElement.getText().length()-1);
+
+        String [] actualRegexArray = loggedInUserElement.getText().split("(?<=!)");
 
         String actualRegexText = actualRegexArray[0];
 
 
-        String expectedColor = "rgba(93, 164, 35, 0)";
-        String actualColor = loggedInUserText.getCssValue("background-color");
+        String expectedColor = "rgba(198, 15, 19, 1)";
+        String actualColor = loggedInUserElement.getCssValue("background-color");
 
         System.out.println(actualColor);
 
